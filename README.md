@@ -14,6 +14,7 @@ Modern software development practices and architectural patterns
 - **[Microservices](software_engineering/microservices/)** - Distributed systems architecture and patterns
 - **[API Development](software_engineering/api_development/)** - REST, GraphQL, and modern API design
 - **[Testing Strategies](software_engineering/testing_strategies/)** - Comprehensive testing methodologies
+- **[Vertical Slice Architecture](software/vertical_slice_architecture/)** - Feature-based code organization and development patterns
 
 ### 📊 [Data Engineering](data_engineering/)
 Building robust data pipelines and processing systems
