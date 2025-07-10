@@ -1,0 +1,7 @@
+beautifulsoup4==4.13.3
+lxml==5.3.1
+boto3==1.36.23
+pydantic==2.10.6
+requests==2.32.3
+pylint==3.3.4
+pynamodb==6.1.0
