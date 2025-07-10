@@ -1,10 +1,10 @@
 /* --------------------------------------------------------
-ARQUIVO: iam.tf @ get-b3-active-tickers module
+FILE: iam.tf @ get-b3-active-tickers module
 
-Criação de policies e roles IAM necessárias para concessão
-de privilégios e acessos para recursos instanciados em
-ambiente AWS com o objetivo de coletar informações de
-ativos financeiros listados na B3.
+Creation of IAM policies and roles necessary for granting 
+privileges and access to resources instantiated in AWS 
+environment for the purpose of collecting information 
+about financial assets listed on B3.
 -------------------------------------------------------- */
 
 module "aws_iam_role" {
