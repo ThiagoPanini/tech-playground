@@ -72,7 +72,7 @@ We welcome contributions! Whether you're:
 - Suggesting new topics or technologies
 - Fixing bugs or issues
 
-Please feel free to open issues and pull requests.
+Please feel free to open issues and pull requests. When submitting a pull request, our comprehensive PR template will guide you through providing all necessary information to help reviewers understand your changes.
 
 ## License
 
