@@ -1,10 +1,9 @@
 /* --------------------------------------------------------
-ARQUIVO: dynamodb.tf @ get-b3-active-tickers module
+FILE: dynamodb.tf @ get-b3-active-tickers module
 
-Criação de um DynamoDB previamente configurado como um
-recurso de armazenamento de itens obtidos através de
-interface para coleta de informações de ativos financeiros
-listados na B3.
+Creation of a DynamoDB table preconfigured as a storage 
+resource for items obtained through interface for 
+collecting information about financial assets listed on B3.
 -------------------------------------------------------- */
 
 module "aws_dynamodb_table" {

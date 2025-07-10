@@ -1,37 +1,37 @@
 /* --------------------------------------------------------
-ARQUIVO: variables.tf @ get-active-tickers module
+FILE: variables.tf @ get-active-tickers module
 
-Arquivo de variáveis definidas para configurar todas as
-declarações de recursos necessárias para implantação das
-peças de coleta e armazenamento de informações básicas de
-ativos financeiros listados na B3.
+Variables file defined to configure all necessary resource 
+declarations for deployment of collection and storage 
+components for basic information about financial assets 
+listed on B3.
 -------------------------------------------------------- */
 
 
 /* --------------------------------------------------------
-   VARIÁVEIS: DynamoDB
+   VARIABLES: DynamoDB
 -------------------------------------------------------- */
 
 variable "dynamodb_b3_active_tickers_table_name" {
-  description = "Nome da tabela a ser criada no DynamoDB para armazenar informações básicas de tickers listados na B3"
+  description = "Name of the table to be created in DynamoDB to store basic information about tickers listed on B3"
   type        = string
   default     = "tbl_b3_active_tickers"
 }
 
 variable "dynamodb_b3_active_tickers_table_hash_key" {
-  description = "Nome da variável associada como Hash Key da tabela"
+  description = "Name of the variable associated as Hash Key of the table"
   type        = string
   default     = "code"
 }
 
 variable "dynamodb_b3_active_tickers_table_range_key" {
-  description = "Nome da variável associada como Range Key da tabela"
+  description = "Name of the variable associated as Range Key of the table"
   type        = string
   default     = "date_extracted"
 }
 
 variable "dynamodb_b3_active_tickers_table_attributes" {
-  description = "Lista de atributos indexados (hash ou range key) associados à tabela"
+  description = "List of indexed attributes (hash or range key) associated with the table"
   type        = list(map(string))
   default = [
     {
@@ -46,6 +46,6 @@ variable "dynamodb_b3_active_tickers_table_attributes" {
 }
 
 /* --------------------------------------------------------
-   VARIÁVEIS: Policies e Role IAM
+   VARIABLES: IAM Policies and Role
 -------------------------------------------------------- */
 
