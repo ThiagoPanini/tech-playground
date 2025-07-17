@@ -10,6 +10,7 @@ permissions:
   id-token: write
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   ci-terraform-vsa:
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: software/vertical_slice_architecture
+        working-directory: software/vertical_slice_architecture/aws/get-b3-stock-tickers
     steps:
       - name: 🔄 Checkout
         uses: actions/checkout@v4
