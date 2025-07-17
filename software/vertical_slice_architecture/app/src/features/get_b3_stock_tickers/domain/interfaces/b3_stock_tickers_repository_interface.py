@@ -9,10 +9,10 @@ class IB3StockTickersRepository(ABC):
     """
 
     @abstractmethod
-    def put_item(self, b3_stock_tickers: B3StockTicker) -> None:
+    def batch_write_items(self, b3_stock_tickers: list[B3StockTicker]) -> None:
         """
-        Saves a B3 stock ticker to the repository.
+        Saves a batch of B3 stock tickers to the repository.
 
         Args:
-            b3_stock_tickers (B3StockTicker): The B3 stock ticker to save.
+            b3_stock_tickers (list[B3StockTicker]): The list of B3 stock tickers to save.
         """
