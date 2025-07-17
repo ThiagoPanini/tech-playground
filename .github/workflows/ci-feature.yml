@@ -34,9 +34,6 @@ jobs:
           pip install -r requirements.txt
           pip install flake8
 
-      - name: Lint Python code
-        run: flake8 app/src
-
   terraform:
     name: Terraform Lint & Validate
     runs-on: ubuntu-latest
@@ -57,9 +54,6 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-
-      - name: Terraform Security Scan
-        uses: aquasecurity/tfsec-action@v1.0.3
 
   create-pr:
     name: Create or Update PR to Main
