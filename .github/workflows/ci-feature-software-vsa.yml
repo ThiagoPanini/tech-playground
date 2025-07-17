@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: software/vertical_slice_architecture/aws/get-b3-stock-tickers
+        working-directory: software/vertical_slice_architecture/infra/aws/get-b3-stock-tickers
     steps:
       - name: 🔄 Checkout
         uses: actions/checkout@v4
