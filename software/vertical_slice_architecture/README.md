@@ -1,30 +1,34 @@
+
 # Vertical Slice Architecture - B3 Stock Tickers
 
-This project demonstrates a **Vertical Slice Architecture** implementation for fetching and storing stock ticker information from the B3 (Brazilian Stock Exchange). The architecture follows clean architecture principles with clear separation of concerns and dependency inversion.
+This project demonstrates a **Vertical Slice Architecture** for fetching and storing stock ticker information from the B3 (Brazilian Stock Exchange). It follows clean architecture principles, with clear separation of concerns and dependency inversion.
+
 
 ## Overview
 
-The application scrapes stock ticker data from the Fundamentus website and processes it using a vertical slice approach, where each feature is self-contained and includes all layers from presentation to infrastructure.
+The application scrapes stock ticker data from the Fundamentus website and processes it using a vertical slice approach. Each feature is self-contained and includes all layers from presentation to infrastructure.
+
 
 ## Architecture
 
-The project implements vertical slice architecture with the following layers:
-
+The project implements vertical slice architecture with these layers:
 - **Domain**: Core business entities and interfaces
 - **Use Cases**: Application business logic
-- **Infrastructure**: External adapters and repositories  
+- **Infrastructure**: External adapters and repositories
 - **Presentation**: Entry points and handlers
+
 
 ## Features
 
 ### Get B3 Stock Tickers
-Retrieves active stock tickers from the B3 exchange through web scraping.
+Retrieves active stock tickers from the B3 exchange via web scraping.
 
 **Flow:**
 1. HTTP request to Fundamentus portal
 2. HTML parsing to extract ticker information
 3. Data transformation to domain entities
 4. Optional storage in DynamoDB
+
 
 ## Project Structure
 
@@ -45,13 +49,14 @@ app/
 │           │   ├── adapters/               # External service adapters
 │           │   └── repositories/           # Data persistence
 │           ├── presentation/               # Presentation layer
-│           ├── usecases/                   # Application use cases
+│           ├── use_case/                   # Application use cases
 └── tests/                                  # Test files
     └── local/                              # Local testing
 infra/                                      # Infrastructure as Code
 └── aws/                                    # AWS Terraform configurations
     └── get_b3_active_tickers/              # AWS resources for the feature
 ```
+
 
 ## Technologies
 
@@ -61,6 +66,7 @@ infra/                                      # Infrastructure as Code
 - **PynamoDB**: DynamoDB ORM
 - **Boto3**: AWS SDK
 - **Terraform**: Infrastructure as Code
+
 
 ## Getting Started
 
@@ -77,13 +83,6 @@ infra/                                      # Infrastructure as Code
 pip install -r requirements.txt
 ```
 
-### Local Testing
-
-Run the application locally:
-```bash
-python -m app.tests.local.run_local
-```
-
 ### Infrastructure Deployment
 
 Deploy AWS infrastructure using Terraform:
@@ -92,6 +91,13 @@ cd infra/aws/get_b3_active_tickers
 terraform init
 terraform plan
 terraform apply
+```
+
+### Local Testing
+
+Run the application locally:
+```bash
+python -m app.tests.local.run_local
 ```
 
 ## Key Components
@@ -112,19 +118,6 @@ terraform apply
 ### Use Cases
 - **GetB3StockTickersUseCase**: Orchestrates the ticker retrieval process
 
-## Testing
-
-The project includes pytest configuration with markers for different test categories:
-- `adapter`: Tests for application adapters
-- `fundamentus`: Tests for Fundamentus portal functionality
-- `requests`: Tests for HTTP request functionality
-- `repository`: Tests for application repositories
-- `dynamodb`: Tests for DynamoDB functionality
-
-Run tests:
-```bash
-pytest
-```
 
 ## Architecture Benefits
 
@@ -133,6 +126,7 @@ pytest
 - **Maintainability**: Changes are localized to specific features
 - **Scalability**: Easy to add new features without affecting existing ones
 - **Dependency Inversion**: High-level modules don't depend on low-level modules
+
 
 ## Contributing
 

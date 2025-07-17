@@ -7,39 +7,42 @@ This repository serves as a comprehensive learning and experimentation platform 
 
 ## Repository Structure
 
+
 ### 🔧 [Software Engineering](software/)
 Modern software development practices and architectural patterns
-- **[Vertical Slice Architecture](software/vertical_slice_architecture/)** - Complete implementation demonstrating feature-based organization with clean architecture principles for B3 stock ticker extraction
+- **[Vertical Slice Architecture](software/vertical_slice_architecture/)**: Complete implementation of vertical slice architecture for B3 stock ticker extraction, demonstrating clean architecture principles with feature-based organization, web scraping, AWS infrastructure (Terraform), and comprehensive testing.
 
 ### 📊 Data Engineering
-*Coming soon - Building robust data pipelines and processing systems*
+*Coming soon: Robust data pipelines and processing systems*
 
-### 🤖 AI & Machine Learning  
-*Coming soon - Artificial intelligence and machine learning implementations*
+### 🤖 AI & Machine Learning
+*Coming soon: Artificial intelligence and machine learning implementations*
 
 ### ☁️ Cloud & Infrastructure
-*Coming soon - Cloud-native architectures and infrastructure management*
+*Coming soon: Cloud-native architectures and infrastructure management*
 
 ### 🗄️ Data Storage
-*Coming soon - Database technologies and storage architectures*
+*Coming soon: Database technologies and storage architectures*
 
 ### 🚀 DevOps & Automation
-*Coming soon - DevOps practices and automation frameworks*
+*Coming soon: DevOps practices and automation frameworks*
+
 
 ## Getting Started
 
-1. **Explore the Current Implementation**: Start with the [Software Engineering](software/) section
-2. **Dive into Vertical Slice Architecture**: Check out the comprehensive [Vertical Slice Architecture](software/vertical_slice_architecture/) example
-3. **Run the Example**: Follow the instructions in each project's README to set up and run the code
-4. **Experiment and Learn**: Use the examples as foundations for your own projects
-5. **Contribute**: Add your own implementations, improvements, or new topics
+1. **Explore the Current Implementation**: Start with the [Software Engineering](software/) section.
+2. **Dive into Vertical Slice Architecture**: See the comprehensive [Vertical Slice Architecture](software/vertical_slice_architecture/) example for B3 stock ticker extraction.
+3. **Run the Example**: Follow instructions in each project's README to set up and run the code.
+4. **Experiment and Learn**: Use the examples as foundations for your own projects.
+5. **Contribute**: Add your own implementations, improvements, or new topics.
+
 
 ## Prerequisites
 
-- Basic programming knowledge (Python, JavaScript, SQL, etc.)
+- Basic programming knowledge (Python, Terraform, etc.)
 - Familiarity with command-line tools
-- Docker and Git installed for containerization examples
-- Cloud account (AWS/GCP/Azure) for cloud-specific examples
+- Cloud account (AWS) for cloud/infrastructure examples
+
 
 ## Contributing
 
@@ -49,7 +52,7 @@ We welcome contributions! Whether you're:
 - Suggesting new topics or technologies
 - Fixing bugs or issues
 
-Please feel free to open issues and pull requests. When submitting a pull request, our comprehensive PR template will guide you through providing all necessary information to help reviewers understand your changes.
+Please open issues and pull requests. When submitting a PR, use the provided template to help reviewers understand your changes. Follow the established architectural patterns, include documentation, and add appropriate tests.
 
 ## License
 
