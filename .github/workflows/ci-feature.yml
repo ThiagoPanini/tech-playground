@@ -65,9 +65,11 @@ jobs:
       - name: Read PR template
         id: pr_template
         run: |
-          echo 'body<<EOF' >> $GITHUB_OUTPUT
-          cat .github/pull_request_template.md >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
+          {
+            echo 'body<<EOF'
+            cat .github/pull_request_template.md
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create or update PR
         uses: peter-evans/create-pull-request@v5
