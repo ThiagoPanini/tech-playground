@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/software**
+      - feature/vertical_slice_architecture
 
 permissions:
   id-token: write
