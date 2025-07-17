@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from typing import Optional
 
 
@@ -16,3 +16,12 @@ class HTTPClientRetryConfig:
     num_retries: int = 3
     backoff_factor: float = 0.1
     status_forcelist: Optional[list[int]] = field(default_factory=lambda: [500, 502, 503, 504])
+
+    def to_dict(self) -> dict:
+        """
+        Converts the retry configuration to a dictionary.
+
+        Returns:
+            A dictionary representation of the retry configuration.
+        """
+        return asdict(self)
