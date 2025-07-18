@@ -1,5 +1,5 @@
 <div align="center">
-    <br><img src="https://github.com/ThiagoPanini/tech-playground/blob/main/docs/logo-tech-playground.png?raw=true" width=200 alt="logo-tech-playground">
+    <br><img src="https://github.com/ThiagoPanini/tech-playground/blob/main/assets/logo-tech-playground.png?raw=true" width=200 alt="logo-tech-playground">
 </div>
 
 <div align="center">
