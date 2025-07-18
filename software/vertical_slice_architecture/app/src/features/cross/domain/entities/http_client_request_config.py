@@ -22,3 +22,18 @@ class HTTPClientRequestConfig:
     timeout: int = 10
     retry_config: Optional[HTTPClientRetryConfig] = None
     request_kwargs: Optional[dict[str, Any]] = field(default_factory=dict)
+
+    def to_dict(self) -> dict:
+        """
+        Converts the request configuration to a dictionary.
+
+        Returns:
+            A dictionary representation of the request configuration.
+        """
+        return {
+            "url": self.url,
+            "headers": self.headers,
+            "timeout": self.timeout,
+            "retry_config": self.retry_config.to_dict() if self.retry_config else None,
+            "request_kwargs": self.request_kwargs
+        }

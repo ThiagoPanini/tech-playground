@@ -1,11 +1,11 @@
-/* --------------------------------------------------------
-FILE: variables.tf @ get-active-tickers module
+/* -----------------------------------------------------------------------------
+  FILE: variables.tf
+  MODULE: aws/get-b3-stock-tickers
 
-Variables file defined to configure all necessary resource 
-declarations for deployment of collection and storage 
-components for basic information about financial assets 
-listed on B3.
--------------------------------------------------------- */
+  DESCRIPTION:
+    Variables for configuring all infrastructure resources related to the process
+    of getting active stock tickers from B3 (the Brazilian Stock Exchange).
+----------------------------------------------------------------------------- */
 
 
 /* --------------------------------------------------------
@@ -15,7 +15,7 @@ listed on B3.
 variable "dynamodb_b3_active_tickers_table_name" {
   description = "Name of the table to be created in DynamoDB to store basic information about tickers listed on B3"
   type        = string
-  default     = "tbl_b3_active_tickers"
+  default     = "tbl_techplay_b3_stock_tickers"
 }
 
 variable "dynamodb_b3_active_tickers_table_hash_key" {
@@ -44,8 +44,3 @@ variable "dynamodb_b3_active_tickers_table_attributes" {
     }
   ]
 }
-
-/* --------------------------------------------------------
-   VARIABLES: IAM Policies and Role
--------------------------------------------------------- */
-

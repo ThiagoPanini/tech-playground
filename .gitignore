@@ -1,11 +1,10 @@
-# Zip files
+# Files and directories internally used by the project
 **.zip
-
-# VS Code configuration dir
 **.vscode
-
-# Temp dir
 **tmp
+
+# Rendered policies templates with sensitive information
+**_rendered
 
 # Python folders
 **python/
