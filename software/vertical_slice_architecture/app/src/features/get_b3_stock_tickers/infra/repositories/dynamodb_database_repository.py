@@ -7,14 +7,15 @@ from pynamodb.attributes import (
     MapAttribute
 )
 
-from app.src.features.cross.utils.logger import setup_logger
-from app.src.features.get_b3_stock_tickers.domain.interfaces.b3_stock_tickers_repository_interface import (
-    IB3StockTickersRepository
+from app.src.features.cross.utils.decorators import timing_decorator
+from app.src.features.cross.utils.log_utils import (
+    setup_logger,
+    log_loop_status
+)
+from app.src.features.get_b3_stock_tickers.domain.interfaces.database_repository_interface import (
+    IDatabaseRepository
 )
 from app.src.features.get_b3_stock_tickers.domain.entities.b3_stock_ticker import B3StockTicker
-
-
-logger = setup_logger(__name__)
 
 
 class B3StockTickerModel(Model):
@@ -36,31 +37,15 @@ class B3StockTickerModel(Model):
         super().__init__(*args, **kwargs)
 
 
-class DynamoDBB3StockTickersRepository(IB3StockTickersRepository):
+class DynamoDBDatabaseRepository(IDatabaseRepository):
     """
     Implementation of the B3 stock tickers repository using DynamoDB.
     """
-
-    def __log_loop_status(self, loop_idx: int, total_elements: int, log_pace: int = 50) -> None:
-        """
-        Logs the progress of a loop processing stock tickers at specified intervals.
-
-        At every `log_pace` iterations, this method logs the number of tickers processed,
-        the number remaining, and the percentage of completion.
-
-        Args:
-            loop_idx (int): The current index of the loop iteration.
-            total_elements (int): The total number of elements to process.
-            log_pace (int): The interval at which to log progress. Default is 50.
-        """
-
-        if loop_idx > 0 and loop_idx % log_pace == 0:
-            num_elements_left = total_elements - loop_idx
-            pct_elements_left = round(100 * (1 - (num_elements_left / total_elements)), 2)
-            logger.info(f"Processed {loop_idx} tickers. "
-                        f"Remaining: {num_elements_left} tickers ({pct_elements_left}% completed)")
+    def __init__(self):
+        self.logger = setup_logger(__name__)
 
 
+    @timing_decorator
     def batch_write_items(self, b3_stock_tickers: list[B3StockTicker]) -> None:
         """
         Saves a batch of B3 stock tickers to the repository.
@@ -79,13 +64,17 @@ class DynamoDBB3StockTickersRepository(IB3StockTickersRepository):
                         date_extracted=ticker.date_extracted
                     )
 
-                    self.__log_loop_status(
-                        loop_idx=idx,
-                        total_elements=len(b3_stock_tickers),
-                        log_pace=100
-                    )
                     batch.save(model)
 
+                    # Logging the status of the loop
+                    log_loop_status(
+                        logger=self.logger,
+                        loop_idx=idx,
+                        total_elements=len(b3_stock_tickers),
+                        log_pace=200,
+                        log_msg="Put <loop_idx> items to repository."
+                    )
+
         except Exception as e:
-            logger.exception(f"Error saving batch of B3 stock tickers: {e}")
+            self.logger.exception(f"Error saving batch of B3 stock tickers: {e}")
             raise

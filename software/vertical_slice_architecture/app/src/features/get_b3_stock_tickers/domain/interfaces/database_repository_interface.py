@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 from app.src.features.get_b3_stock_tickers.domain.entities.b3_stock_ticker import B3StockTicker
 
 
-class IB3StockTickersRepository(ABC):
+class IDatabaseRepository(ABC):
     """
-    Interface for the B3 stock tickers repository.
+    Interface for the B3 stock tickers database repository.
     This interface defines methods for putting tickers data into the repository.
     """
 
