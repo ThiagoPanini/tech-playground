@@ -2,7 +2,7 @@ import logging
 
 import requests
 
-from app.src.features.cross.utils.logger import setup_logger
+from app.src.features.cross.utils.log_utils import setup_logger
 from app.src.features.cross.domain.interfaces.http_client_adapter import IHTTPClientAdapter
 from app.src.features.cross.domain.entities.http_client_request_config import HTTPClientRequestConfig
 from app.src.features.cross.domain.entities.http_client_response import HTTPClientResponse
