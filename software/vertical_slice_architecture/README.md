@@ -106,14 +106,14 @@ python -m app.tests.local.run_local
 - **B3StockTicker**: Core entity representing a stock ticker with company information
 
 ### Interfaces
-- **IB3StockTickersRepository**: Contract for data persistence
-- **IB3StockTickersParserAdapter**: Contract for HTML parsing
+- **IDatabaseRepository**: Contract for data persistence
+- **IHTMLParserAdapter**: Contract for HTML parsing
 - **IHTTPClientAdapter**: Contract for HTTP operations
 
 ### Adapters
-- **FundamentusB3StockTickersAdapter**: Parses HTML from Fundamentus website
+- **FundamentusHTMLParserAdapter**: Parses HTML from Fundamentus website
 - **RequestsHTTPClientAdapter**: HTTP client implementation using requests library
-- **DynamoDBB3StockTickersRepository**: DynamoDB storage implementation
+- **DynamoDBDatabaseRepository**: DynamoDB storage implementation
 
 ### Use Cases
 - **GetB3StockTickersUseCase**: Orchestrates the ticker retrieval process

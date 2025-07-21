@@ -56,7 +56,7 @@ Contributions are welcome! Please open issues or pull requests to suggest improv
 - GitHub: [@ThiagoPanini](https://github.com/ThiagoPanini)
 - LinkedIn: [Thiago Panini](https://www.linkedin.com/in/thiago-panini/)
 - Hashnode: [panini-tech-lab](https://panini.hashnode.dev/)
-- DevTo: [thiagopanini](https://dev.to/thiagopanini)🚀
+- DevTo: [thiagopanini](https://dev.to/thiagopanini)
 
 ---
 
