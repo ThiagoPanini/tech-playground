@@ -28,3 +28,13 @@ module "sqs_queue" {
   copy_dlq_config_from_source_queue = true
 
 }
+
+/*
+# SNS to SQS subscription
+resource "aws_sns_topic_subscription" "tickers_topic_to_sqs" {
+  topic_arn            = aws_sns_topic.tickers_topic.arn
+  protocol             = "sqs"
+  endpoint             = module.sqs_queue.arn
+  raw_message_delivery = true
+}
+*/
