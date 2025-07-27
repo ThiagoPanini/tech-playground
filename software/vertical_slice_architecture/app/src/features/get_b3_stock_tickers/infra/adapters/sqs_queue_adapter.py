@@ -56,11 +56,11 @@ class SQSQueueAdapter(IQueueAdapter):
                 batch_entries = entries[i:i + 10]
 
                 _ = self.sqs_client.send_message_batch(
-                    QueueUrl=os.environ.get("SQS_QUEUE_NAME"),
+                    QueueUrl=os.environ.get("SQS_B3_STOCK_TICKERS_QUEUE_NAME"),
                     Entries=batch_entries
                 )
 
-                # Logging the status of the loop
+                # Logging the loop status
                 log_loop_status(
                     logger=self.logger,
                     loop_idx=i // 10,
