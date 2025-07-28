@@ -1,33 +1,30 @@
 from bs4 import BeautifulSoup
 
-from app.src.features.cross.utils.logger import setup_logger
 from app.src.features.cross.value_objects import InvestmentWebSite
 from app.src.features.cross.domain.entities.http_client_request_config import HTTPClientRequestConfig
-from app.src.features.cross.domain.entities.http_client_response import HTTPClientResponse
-from app.src.features.get_b3_stock_tickers.domain.interfaces.b3_stock_tickers_parser_adapter_interface import (
-    IB3StockTickersParserAdapter
+from app.src.features.get_b3_stock_tickers.domain.interfaces.html_parser_adapter_interface import (
+    IHTMLParserAdapter
 )
 from app.src.features.get_b3_stock_tickers.domain.entities.b3_stock_ticker import B3StockTicker
 
 
-class FundamentusB3StockTickersAdapter(IB3StockTickersParserAdapter):
+class FundamentusHTMLParserAdapter(IHTMLParserAdapter):
     """
-    Implementation of IB3StockTickersParserAdapter that parses stock tickers from Fundamentus website.
+    Implementation of IHTMLParserAdapter that parses stock tickers from Fundamentus website.
     """
 
-    def __init__(self):
-        self.logger = setup_logger(__name__)
-
-    def parse_b3_stock_tickers(
+    def parse_html_content(
         self,
-        http_client_response: HTTPClientResponse,
+        html_content: bytes,
+        encoding: str,
         request_config: HTTPClientRequestConfig
     ) -> list[B3StockTicker]:
         """
         Parses stock tickers from the raw HTML content of a HTTP response.
 
         Args:
-            http_client_response (HTTPClientResponse): The HTTP response object with raw HTML text.
+            html_content (bytes): The raw HTML content of the HTTP response.
+            encoding (str): The encoding used to decode the HTML content.
             request_config (HTTPClientRequestConfig): The object containing metadata of the request.
 
         Returns:
@@ -35,7 +32,7 @@ class FundamentusB3StockTickersAdapter(IB3StockTickersParserAdapter):
         """
 
         # Decoding the raw HTML text and parsing it using BeautifulSoup
-        html_text = http_client_response.content.decode(http_client_response.encoding)
+        html_text = html_content.decode(encoding)
         html_parsed = BeautifulSoup(html_text, "lxml")
 
         # Returning the HTML table containing cells that have stock information

@@ -4,25 +4,30 @@ from app.src.features.cross.infra.adapters.requests_http_client_adapter import R
 from app.src.features.get_b3_stock_tickers.use_case.get_b3_stock_tickers_use_case import (
     GetB3StockTickersUseCase
 )
-from app.src.features.get_b3_stock_tickers.infra.adapters.fundamentus_b3_stock_tickers_adapter import (
-    FundamentusB3StockTickersAdapter
+from app.src.features.get_b3_stock_tickers.infra.adapters.fundamentus_html_parser_adapter import (
+    FundamentusHTMLParserAdapter
 )
-from app.src.features.get_b3_stock_tickers.infra.repositories.dynamodb_b3_stock_tickers_repository import (
-    DynamoDBB3StockTickersRepository
+from app.src.features.get_b3_stock_tickers.infra.repositories.dynamodb_database_repository import (
+    DynamoDBDatabaseRepository
 )
+from app.src.features.get_b3_stock_tickers.infra.adapters.sqs_queue_adapter import SQSQueueAdapter
 from app.src.features.get_b3_stock_tickers.infra.mappers.http_response_mapper import HTTPResponseMapper
+
 
 
 # Initializing mappers, adapters and repositories
 http_client_adapter = RequestsHTTPClientAdapter()
-b3_stock_tickers_parser_adapter = FundamentusB3StockTickersAdapter()
-b3_stock_tickers_repository = DynamoDBB3StockTickersRepository()
+html_parser_adapter = FundamentusHTMLParserAdapter()
+database_repository = DynamoDBDatabaseRepository()
+queue_adapter = SQSQueueAdapter()
+
 
 # Initializing use case
 use_case = GetB3StockTickersUseCase(
     http_client_adapter=http_client_adapter,
-    b3_stock_tickers_parser_adapter=b3_stock_tickers_parser_adapter,
-    b3_stock_tickers_repository=b3_stock_tickers_repository
+    html_parser_adapter=html_parser_adapter,
+    database_repository=database_repository,
+    queue_adapter=queue_adapter
 )
 
 

@@ -26,6 +26,6 @@ module "aws_iam_role" {
   policy_templates_vars = {
     "region_name" = local.region_name,
     "account_id"  = local.account_id,
-    "table_name"  = var.dynamodb_b3_active_tickers_table_name
+    "table_name"  = var.dynamodb_table_name
   }
 }
