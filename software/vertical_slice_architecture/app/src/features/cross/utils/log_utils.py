@@ -59,5 +59,5 @@ def log_loop_status(
     if loop_idx > 0 and loop_idx % log_pace == 0:
         num_elements_left = total_elements - loop_idx
         pct_elements_left = round(100 * (1 - (num_elements_left / total_elements)), 2)
-        logger.info(f"{log_msg.replace('<loop_idx>', str(loop_idx))} "
-                    f"There are {num_elements_left} remaining ({pct_elements_left}% completed)")
+        logger.info(f"{log_msg}. There are {num_elements_left} remaining "
+                    f"({pct_elements_left}% completed)")

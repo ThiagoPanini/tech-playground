@@ -1,5 +1,5 @@
 import os
-import time
+from uuid import uuid4
 from dataclasses import dataclass
 
 from app.src.features.cross.utils.log_utils import setup_logger
@@ -13,10 +13,17 @@ from app.src.features.get_b3_stock_tickers.domain.interfaces.html_parser_adapter
 from app.src.features.get_b3_stock_tickers.domain.interfaces.database_repository_interface import (
     IDatabaseRepository
 )
-from app.src.features.get_b3_stock_tickers.domain.dtos.output_dto import B3StockTickersOutputDTO
 from app.src.features.get_b3_stock_tickers.domain.interfaces.queue_adapter_interface import (
     IQueueAdapter
 )
+from app.src.features.get_b3_stock_tickers.domain.interfaces.topic_adapter_interface import (
+    ITopicAdapter
+)
+from app.src.features.get_b3_stock_tickers.domain.entities.b3_stock_ticker_message import (
+    B3StockTickerMessage,
+    B3StockTickerMessageBody
+)
+from app.src.features.get_b3_stock_tickers.domain.dtos.output_dto import B3StockTickersOutputDTO
 
 
 logger = setup_logger(__name__)
@@ -38,6 +45,7 @@ class GetB3StockTickersUseCase:
     html_parser_adapter: IHTMLParserAdapter
     database_repository: IDatabaseRepository
     queue_adapter: IQueueAdapter
+    topic_adapter: ITopicAdapter
 
 
     def execute(self) -> list[str]:
@@ -76,21 +84,30 @@ class GetB3StockTickersUseCase:
 
             # Save tickers to the repository
             logger.info(f"Saving {len(b3_stock_tickers_list)} B3 stock tickers to the repository")
-            #start_time = time.time()
             self.database_repository.batch_write_items(b3_stock_tickers=b3_stock_tickers_list)
-            #elapsed_time = time.time() - start_time
-            #logger.info(f"B3 stock tickers successfully saved to the repository in {elapsed_time:.2f} seconds")
-
+            
             # Send tickers to queue
-            logger.info(f"Sending {len(b3_stock_tickers_list)} B3 stock tickers to queue")
-            #start_time = time.time()
-            self.queue_adapter.batch_send_messages(b3_stock_tickers=b3_stock_tickers_list)
-            #elapsed_time = time.time() - start_time
-            #logger.info(f"B3 stock tickers successfully sent to the queue in {elapsed_time:.2f} seconds")
+            # logger.info(f"Sending {len(b3_stock_tickers_list)} B3 stock tickers to queue")
+            # self.queue_adapter.batch_send_messages(b3_stock_tickers=b3_stock_tickers_list)
+
+            # Build messages object and publish it to a topic
+            messages = [
+                B3StockTickerMessage(
+                    message_body=B3StockTickerMessageBody(
+                        code=b3_stock_ticker.code,
+                        company_name=b3_stock_ticker.company_name,
+                        date_extracted=b3_stock_ticker.date_extracted
+                    )
+                ) for b3_stock_ticker in b3_stock_tickers_list
+            ]
+            logger.info(f"Publishing {len(messages)} B3 stock tickers messages to the topic")
+            self.topic_adapter.batch_publish_messages(messages=messages)
 
             return B3StockTickersOutputDTO.ok(
                 data={
-                    "total_tickers": len(b3_stock_tickers_list)
+                    "total_tickers": len(b3_stock_tickers_list),
+                    "dynamodb_table_name": os.getenv("DYNAMODB_B3_STOCK_TICKERS_TABLE_NAME"),
+                    "sns_topic_name": os.getenv("SNS_B3_STOCK_TICKERS_TOPIC_NAME")
                 }
             )
         

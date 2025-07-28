@@ -72,9 +72,12 @@ class DynamoDBDatabaseRepository(IDatabaseRepository):
                         loop_idx=idx,
                         total_elements=len(b3_stock_tickers),
                         log_pace=200,
-                        log_msg="Put <loop_idx> items to repository."
+                        log_msg=f"Put {idx} items to repository"
                     )
 
         except Exception as e:
             self.logger.exception(f"Error saving batch of B3 stock tickers: {e}")
             raise
+        else:
+            table_name = B3StockTickerModel.Meta.table_name
+            self.logger.info(f"Successfully saved items to DynamoDB table {table_name}")

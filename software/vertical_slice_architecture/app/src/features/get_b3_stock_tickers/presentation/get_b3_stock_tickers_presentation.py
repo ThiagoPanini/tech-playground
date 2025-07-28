@@ -11,6 +11,7 @@ from app.src.features.get_b3_stock_tickers.infra.repositories.dynamodb_database_
     DynamoDBDatabaseRepository
 )
 from app.src.features.get_b3_stock_tickers.infra.adapters.sqs_queue_adapter import SQSQueueAdapter
+from app.src.features.get_b3_stock_tickers.infra.adapters.sns_topic_adapter import SNSTopicAdapter
 from app.src.features.get_b3_stock_tickers.infra.mappers.http_response_mapper import HTTPResponseMapper
 
 
@@ -20,6 +21,7 @@ http_client_adapter = RequestsHTTPClientAdapter()
 html_parser_adapter = FundamentusHTMLParserAdapter()
 database_repository = DynamoDBDatabaseRepository()
 queue_adapter = SQSQueueAdapter()
+topic_adapter = SNSTopicAdapter()
 
 
 # Initializing use case
@@ -27,7 +29,8 @@ use_case = GetB3StockTickersUseCase(
     http_client_adapter=http_client_adapter,
     html_parser_adapter=html_parser_adapter,
     database_repository=database_repository,
-    queue_adapter=queue_adapter
+    queue_adapter=queue_adapter,
+    topic_adapter=topic_adapter
 )
 
 
